@@ -5,6 +5,8 @@
  */
 package patientmanagementsystem;
 
+import GUIs.Login;
+
 /**
  *
  * @author Charlie Parsons
@@ -15,7 +17,8 @@ public class PatientManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Login LoginScreen = new Login();
+        LoginScreen.setVisible(true);
     }
     
 }
