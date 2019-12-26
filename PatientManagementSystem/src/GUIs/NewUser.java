@@ -41,6 +41,8 @@ public class NewUser extends javax.swing.JFrame {
         GenderBox = new javax.swing.JTextField();
         SubmitBut = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        PasswordBox = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -76,6 +78,10 @@ public class NewUser extends javax.swing.JFrame {
         jLabel2.setText("<html>Create a request to create a new account. Please note this is for patients only your request must be approved  before you may make an appointment.");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        PasswordBox.setText("Password");
+
+        passwordLabel.setText("Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +103,8 @@ public class NewUser extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7)
+                                    .addComponent(passwordLabel))
                                 .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(SubmitBut, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,7 +113,8 @@ public class NewUser extends javax.swing.JFrame {
                                         .addComponent(SurNBox)
                                         .addComponent(AddressBox, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                                         .addComponent(AgeBox)
-                                        .addComponent(GenderBox)))))
+                                        .addComponent(GenderBox)
+                                        .addComponent(PasswordBox)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -138,8 +146,12 @@ public class NewUser extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(GenderBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(PasswordBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(SubmitBut)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -187,6 +199,7 @@ public class NewUser extends javax.swing.JFrame {
     private javax.swing.JTextField AgeBox;
     private javax.swing.JTextField GenderBox;
     private javax.swing.JTextField GivenNBox;
+    private javax.swing.JTextField PasswordBox;
     private javax.swing.JButton SubmitBut;
     private javax.swing.JTextField SurNBox;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -197,5 +210,6 @@ public class NewUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel passwordLabel;
     // End of variables declaration//GEN-END:variables
 }

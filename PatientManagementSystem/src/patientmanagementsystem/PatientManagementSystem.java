@@ -6,6 +6,11 @@
 package patientmanagementsystem;
 
 import GUIs.Login;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -19,6 +24,18 @@ public class PatientManagementSystem {
     public static void main(String[] args) {
         Login LoginScreen = new Login();
         LoginScreen.setVisible(true);
+        
+        try{
+            File tempFile = new File("Database/Users/UserIDList.txt");
+            if(!tempFile.exists()){
+                Path path = Paths.get("Database/Users/UserIDList.txt");
+                Files.createDirectories(path.getParent());
+                Files.createFile(path);
+            }
+        } 
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
 }

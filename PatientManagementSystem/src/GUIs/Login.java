@@ -6,6 +6,14 @@
 package GUIs;
 
 import GUIs.NewUser;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -158,8 +166,28 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginButMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButMousePressed
         // TODO add your handling code here:
-        NewUser NUFrame = new NewUser();
+        
         System.out.println("pressed Login");
+        
+        try{
+        
+        FileReader reader;
+        BufferedReader buffReader;
+            
+        reader = new FileReader("Database/Users/Patients/" + IDField.getText() + ".txt");
+        buffReader = new BufferedReader(reader); 
+        if (CheckPassword(buffReader,PasswordField.getText()) == true){
+            
+        System.out.println("Success");
+        } else {
+            
+        System.out.println("Incorrect user or password");
+        }
+        buffReader.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_LoginButMousePressed
 
     /**
@@ -208,4 +236,28 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+    
+    public Boolean CheckPassword(BufferedReader buffReader, String ePassword){
+        try{
+        String tempPassword = buffReader.readLine();
+        
+        System.out.println(tempPassword);
+        System.out.println(ePassword);
+        
+        if (ePassword.equals(tempPassword)){
+
+            System.out.println("true");
+
+            return true;
+        } else {
+            System.out.println("false");
+            return false;
+        }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
