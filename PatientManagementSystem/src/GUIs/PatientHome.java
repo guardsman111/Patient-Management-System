@@ -16,6 +16,7 @@ public class PatientHome extends javax.swing.JFrame {
      */
     public PatientHome() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

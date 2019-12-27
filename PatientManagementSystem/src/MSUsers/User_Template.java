@@ -76,39 +76,4 @@ public class User_Template {
         return userID;
     }
     
-    public Boolean CheckIDDuplicate(String ID){
-        
-        try{
-            File tempFile = new File("Database/Users/UserIDList.txt");
-            if(!tempFile.exists()){
-                Path path = Paths.get("Database/Users/UserIDList.txt");
-                Files.createDirectories(path.getParent());
-                Files.createFile(path);
-            }
-        } 
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        
-        try {
-            FileReader reader = new FileReader("Database/Users/UserIDList.txt");
-            BufferedReader buffReader = new BufferedReader(reader);
-            
-            String tempLine;
-            tempLine = buffReader.readLine();
-            while(tempLine != null){
-                if (tempLine == ID){
-                    return false;
-                }
-                else {
-                    tempLine = buffReader.readLine();
-                }
-            }
-            buffReader.close();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-         return true;
-    }
 }

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import MSUsers.IDCheck;
 
 /**
  * Patient User
@@ -102,13 +103,14 @@ public class Patient extends User_Template {
     
     @Override
     public String GenerateID(){
+        IDCheck Checker = new IDCheck();
         Boolean original = false;
         String ID = null;
         while(original == false){
             int x = (int)(Math.random()*((9999-1000)+1))+1000;
             ID = Integer.toString(x);
             ID = "P" + ID;
-            original = CheckIDDuplicate(ID);
+            original = Checker.CheckIDDuplicate(ID);
         }
         return ID;
     }

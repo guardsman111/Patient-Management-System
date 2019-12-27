@@ -14,13 +14,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * Checks the creation is still working and creates test users
- * 
  * @author Charlie Parsons
  */
-public class PatientTest {
+public class IDCheckTest {
     
-    public PatientTest() {
+    public IDCheckTest() {
     }
     
     @BeforeClass
@@ -33,20 +31,23 @@ public class PatientTest {
     
     @Before
     public void setUp() {
-        
     }
     
     @After
     public void tearDown() {
     }
 
+    /**
+     * Test of CheckIDDuplicate method, of class IDCheck.
+     */
     @Test
-    public void testCreatePatient() {
-        // TODO review the generated test code and remove the default call to fail.
-        Patient test1 = new Patient("Harry", "Parsons", "Plymouth", 21, "Male", "Password");
-        Patient test2 = new Patient("Alan", "Dane", "Kent", 35, "Male", "Password");
-        Patient test3 = new Patient("Francis", "Dane", "Kent", 35, "Female", "Password");
-        Patient test4 = new Patient("Test",  "Test");
-        
-    }    
+    public void testCheckIDDuplicate() {
+        System.out.println("CheckIDDuplicate");
+        String ID = "Test";
+        IDCheck instance = new IDCheck();
+        Boolean expResult = false;
+        Boolean result = instance.CheckIDDuplicate(ID);
+        assertEquals(expResult, result);
+    }
+    
 }

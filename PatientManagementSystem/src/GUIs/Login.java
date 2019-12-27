@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import GUIProcesses.LoginPress;
 
 /**
  *
@@ -21,11 +22,13 @@ import java.nio.file.Paths;
  */
 public class Login extends javax.swing.JFrame {
 
+    LoginPress lPress = new LoginPress();
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        jLabel5.setVisible(false);
     }
 
     /**
@@ -46,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         NoAccountBut = new javax.swing.JLabel();
         PasswordField = new javax.swing.JPasswordField();
         LoginBut = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -57,15 +61,23 @@ public class Login extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        IDField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         IDField.setText("User ID");
+        IDField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IDFieldMouseClicked(evt);
+            }
+        });
         IDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDFieldActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("User ID Number");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Password");
 
         jLabel4.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
@@ -74,7 +86,6 @@ public class Login extends javax.swing.JFrame {
         NoAccountBut.setBackground(new java.awt.Color(255, 51, 51));
         NoAccountBut.setForeground(new java.awt.Color(102, 102, 255));
         NoAccountBut.setText(" Not have an Account?");
-        NoAccountBut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         NoAccountBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 NoAccountButMouseClicked(evt);
@@ -84,8 +95,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        PasswordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PasswordField.setText("People Suck");
+        PasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PasswordFieldMouseClicked(evt);
+            }
+        });
 
+        LoginBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LoginBut.setText("Login");
         LoginBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -95,6 +113,10 @@ public class Login extends javax.swing.JFrame {
                 LoginButMousePressed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel5.setText("Incorrect User ID or Password!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,7 +141,10 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(PasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(205, 205, 205)
-                        .addComponent(LoginBut)))
+                        .addComponent(LoginBut))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,7 +152,9 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(67, 67, 67)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -137,7 +164,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(LoginBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(NoAccountBut)
                 .addGap(42, 42, 42))
         );
@@ -169,26 +196,34 @@ public class Login extends javax.swing.JFrame {
         
         System.out.println("pressed Login");
         
-        try{
-        
-        FileReader reader;
-        BufferedReader buffReader;
-            
-        reader = new FileReader("Database/Users/Patients/" + IDField.getText() + ".txt");
-        buffReader = new BufferedReader(reader); 
-        if (CheckPassword(buffReader,PasswordField.getText()) == true){
-            
-        System.out.println("Success");
-        } else {
-            
-        System.out.println("Incorrect user or password");
+        if (IDField.getText().charAt(0) == 'P'){
+            if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                PatientHome PHome = new PatientHome();
+            } else {
+                jLabel5.setVisible(true);
+            }
         }
-        buffReader.close();
+        if (IDField.getText().charAt(0) == 'D'){
+            if (lPress.Login(IDField.getText(),PasswordField.getText())){
+            } else {
+                jLabel5.setVisible(true);
+            }
         }
-        catch(IOException e){
-            e.printStackTrace();
+        if (IDField.getText().charAt(0) == 'S'){
+            if (lPress.Login(IDField.getText(),PasswordField.getText())){
+            } else {
+                jLabel5.setVisible(true);
+            }
         }
     }//GEN-LAST:event_LoginButMousePressed
+
+    private void IDFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDFieldMouseClicked
+        IDField.setText("");
+    }//GEN-LAST:event_IDFieldMouseClicked
+
+    private void PasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordFieldMouseClicked
+        PasswordField.setText("");
+    }//GEN-LAST:event_PasswordFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,30 +269,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
     
-    public Boolean CheckPassword(BufferedReader buffReader, String ePassword){
-        try{
-        String tempPassword = buffReader.readLine();
-        
-        System.out.println(tempPassword);
-        System.out.println(ePassword);
-        
-        if (ePassword.equals(tempPassword)){
-
-            System.out.println("true");
-
-            return true;
-        } else {
-            System.out.println("false");
-            return false;
-        }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 }
