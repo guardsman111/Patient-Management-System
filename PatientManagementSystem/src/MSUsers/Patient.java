@@ -48,6 +48,13 @@ public class Patient extends User_Template {
         buffWriter.newLine();
 
         buffWriter.close();
+
+        FileWriter writer = new FileWriter("Database/Users/UserIDList.txt", true);
+        BufferedWriter buffWriter = new BufferedWriter(writer);
+            
+        buffWriter.write(getUserID());
+        buffWriter.newLine();
+        buffWriter.close();
         }
         catch(IOException e){
             e.printStackTrace();

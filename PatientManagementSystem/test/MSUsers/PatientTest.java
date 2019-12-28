@@ -46,7 +46,5 @@ public class PatientTest {
         Patient test1 = new Patient("Harry", "Parsons", "Plymouth", 21, "Male", "Password");
         Patient test2 = new Patient("Alan", "Dane", "Kent", 35, "Male", "Password");
         Patient test3 = new Patient("Francis", "Dane", "Kent", 35, "Female", "Password");
-        Patient test4 = new Patient("Test",  "Test");
-        
     }    
 }

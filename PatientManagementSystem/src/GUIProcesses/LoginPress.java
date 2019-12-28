@@ -29,11 +29,17 @@ public class LoginPress {
         if (enteredID.charAt(0) == 'P'){
             reader = new FileReader("Database/Users/Patients/" + enteredID + ".txt");
         }
-        if (enteredID.charAt(0) == 'D'){
+        else if (enteredID.charAt(0) == 'D'){
             reader = new FileReader("Database/Users/Doctors/" + enteredID + ".txt");
         }
-        if (enteredID.charAt(0) == 'S'){
+        else if (enteredID.charAt(0) == 'S'){
             reader = new FileReader("Database/Users/Secretary/" + enteredID + ".txt");
+        } 
+        else if (enteredID.charAt(0) == 'A'){
+            reader = new FileReader("Database/Users/Admin/" + enteredID + ".txt");
+        } 
+        else {
+            reader = new FileReader("Database/Users/Patients/" + enteredID + ".txt");
         }
         buffReader = new BufferedReader(reader); 
         if (CheckPassword(buffReader,enteredPass) == true){

@@ -16,12 +16,8 @@ public class Admin extends User_Template {
     public Admin() {
     }
     
-    public Admin(String ID, String fName, String sName, String address) {
-        
-        setUserID(ID);
-        setfName(fName);
-        setlName(sName);
-        setAddress(address);                
+    public Admin(String ID, String fName, String sName, String address, String password) {
+        CreateUser("Admin", fName, sName, address, password);
     }
     
     

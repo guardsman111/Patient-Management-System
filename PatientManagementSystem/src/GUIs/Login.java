@@ -211,6 +211,13 @@ public class Login extends javax.swing.JFrame {
         }
         if (IDField.getText().charAt(0) == 'S'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                SecretaryHome SHome = new SecretaryHome();
+            } else {
+                jLabel5.setVisible(true);
+            }
+        }
+        if (IDField.getText().charAt(0) == 'D'){
+            if (lPress.Login(IDField.getText(),PasswordField.getText())){
             } else {
                 jLabel5.setVisible(true);
             }

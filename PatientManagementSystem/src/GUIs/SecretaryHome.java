@@ -16,6 +16,7 @@ public class SecretaryHome extends javax.swing.JFrame {
      */
     public SecretaryHome() {
         initComponents();
+        setVisible(true);
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package GUIProcesses;
 
+import MSUsers.Patient;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -46,8 +47,9 @@ public class LoginPressTest {
     @Test
     public void testLogin() {
         System.out.println("Login");
-        String enteredID = "Test";
-        String enteredPass = "Test";
+        Patient tempP = new Patient("PasswordTest", "PasswordTest");
+        String enteredID = "PasswordTest";
+        String enteredPass = "PasswordTest";
         LoginPress instance = new LoginPress();
         instance.Login(enteredID, enteredPass);
     }
@@ -60,8 +62,8 @@ public class LoginPressTest {
         System.out.println("CheckPassword");
         BufferedReader buffReader = null;
         try{
-        buffReader = new BufferedReader(new FileReader("Database/Users/Patients/Test.txt"));
-        String ePassword = "Test";
+        buffReader = new BufferedReader(new FileReader("Database/Users/Patients/PasswordTest.txt"));
+        String ePassword = "PasswordTest";
         LoginPress instance = new LoginPress();
         Boolean expResult = true;
         Boolean result = instance.CheckPassword(buffReader, ePassword);

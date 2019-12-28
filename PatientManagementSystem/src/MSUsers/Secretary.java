@@ -16,12 +16,8 @@ public class Secretary extends User_Template {
     public Secretary() {
     }
     
-    public Secretary(String ID, String fName, String sName, String address) {
-        
-        setUserID(ID);
-        setfName(fName);
-        setlName(sName);
-        setAddress(address);                
+    public Secretary(String fName, String sName, String address, String password) {
+        CreateUser("Secretary", fName, sName, address, password);
     }
     
     

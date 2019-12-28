@@ -43,6 +43,9 @@ public class IDCheckTest {
     @Test
     public void testCheckIDDuplicate() {
         System.out.println("CheckIDDuplicate");
+        
+        Patient test4 = new Patient("Test",  "Test");
+        
         String ID = "Test";
         IDCheck instance = new IDCheck();
         Boolean expResult = false;

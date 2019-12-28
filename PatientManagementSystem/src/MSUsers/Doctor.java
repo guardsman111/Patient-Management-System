@@ -16,12 +16,8 @@ public class Doctor extends User_Template {
     public Doctor() {
     }
     
-    public Doctor(String ID, String fName, String sName, String address) {
-        
-        setUserID(ID);
-        setfName(fName);
-        setlName(sName);
-        setAddress(address);                
+    public Doctor(String ID, String fName, String sName, String address, String password) {
+        CreateUser("Doctor", fName, sName, address, password);
     }
     
     
