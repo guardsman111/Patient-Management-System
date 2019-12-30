@@ -43,8 +43,10 @@ public class LoginPress {
         }
         buffReader = new BufferedReader(reader); 
         if (CheckPassword(buffReader,enteredPass) == true){
+            buffReader.close();
             return true;
         } else {
+            buffReader.close();
             return false;
         }
         }

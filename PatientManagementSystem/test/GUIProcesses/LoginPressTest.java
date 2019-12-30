@@ -67,6 +67,7 @@ public class LoginPressTest {
         LoginPress instance = new LoginPress();
         Boolean expResult = true;
         Boolean result = instance.CheckPassword(buffReader, ePassword);
+        buffReader.close();
         assertEquals(expResult, result);
         }
         catch(IOException e){

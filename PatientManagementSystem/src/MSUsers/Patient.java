@@ -28,8 +28,6 @@ public class Patient extends User_Template {
     
     private FileWriter writer;
     private BufferedWriter buffWriter; 
-    private FileReader reader;
-    private BufferedReader buffReader;
     
     public Patient() {
     }
@@ -98,10 +96,6 @@ public class Patient extends User_Template {
         buffWriter.write(getUserID());
         buffWriter.newLine();
         buffWriter.close();
-        
-        reader = new FileReader("Database/Users/Patients/" + getUserID() + ".txt");
-        buffReader = new BufferedReader(reader); 
-        buffReader.close();
         }
         catch(IOException e){
             e.printStackTrace();

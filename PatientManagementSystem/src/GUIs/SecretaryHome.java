@@ -5,6 +5,9 @@
  */
 package GUIs;
 
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Charlie Parsons
@@ -34,7 +37,7 @@ public class SecretaryHome extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         PatRequestText = new javax.swing.JLabel();
         PatRequestField = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        patReqBox = new javax.swing.JTextArea();
         AcceptBut = new javax.swing.JButton();
         RejectBut = new javax.swing.JButton();
         NextPatBut = new javax.swing.JButton();
@@ -71,10 +74,10 @@ public class SecretaryHome extends javax.swing.JFrame {
         PatRequestText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PatRequestText.setText("0");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        PatRequestField.setViewportView(jTextArea1);
+        patReqBox.setColumns(20);
+        patReqBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        patReqBox.setRows(5);
+        PatRequestField.setViewportView(patReqBox);
 
         AcceptBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         AcceptBut.setText("Accept Request");
@@ -346,6 +349,40 @@ public class SecretaryHome extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getDateText() {
+        return DateText;
+    }
+
+    public void setDateText(JLabel DateText) {
+        this.DateText = DateText;
+    }
+
+    public JLabel getDoctorText() {
+        return DoctorText;
+    }
+
+    public void setDoctorText(JLabel DoctorText) {
+        this.DoctorText = DoctorText;
+    }
+
+    public JLabel getPatientText() {
+        return PatientText;
+    }
+
+    public void setPatientText(JLabel PatientText) {
+        this.PatientText = PatientText;
+    }
+
+    public JTextArea getPatReqBox() {
+        return patReqBox;
+    }
+
+    public void setPatReqBox(String newString) {
+        this.patReqBox.setText(newString);
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptBut;
     private javax.swing.JLabel AppRequestText;
@@ -371,6 +408,6 @@ public class SecretaryHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea patReqBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -25,6 +27,16 @@ public class PatientManagementSystem {
         Login LoginScreen = new Login();
         LoginScreen.setVisible(true);
         
+        TimerTask task = new TimerTask() {
+            public void run(){
+                Update();
+            }
+        };
+                
+        Timer timer = new Timer();
+        
+        timer.schedule(task, 10);
+        
         try{
             File tempFile = new File("Database/Users/UserIDList.txt");
             if(!tempFile.exists()){
@@ -36,6 +48,10 @@ public class PatientManagementSystem {
         catch(IOException e){
             e.printStackTrace();
         }
+    }
+    
+    public static void Update(){
+        
     }
     
 }
