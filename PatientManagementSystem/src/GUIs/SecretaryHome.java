@@ -7,6 +7,7 @@ package GUIs;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import GUIProcesses.NewUserOperations;
 
 /**
  *
@@ -14,14 +15,30 @@ import javax.swing.JTextArea;
  */
 public class SecretaryHome extends javax.swing.JFrame {
 
+    NewUserOperations UserOps = null;
+    
     /**
      * Creates new form SecretaryHome
      */
     public SecretaryHome() {
         initComponents();
         setVisible(true);
+        CreateUserOps();
+        PrevPatBut.setEnabled(false);
+        if (UserOps.GetEndOfList()){
+            this.NextPatBut.setEnabled(false);
+        } else {
+            patReqBox.setText(UserOps.DisplayRequest());
+        }
     }
 
+    private void CreateUserOps(){
+        
+        UserOps = new NewUserOperations();
+        UserOps.CheckForRequest();
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,15 +98,35 @@ public class SecretaryHome extends javax.swing.JFrame {
 
         AcceptBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         AcceptBut.setText("Accept Request");
+        AcceptBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AcceptButMouseClicked(evt);
+            }
+        });
 
         RejectBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RejectBut.setText("Reject Request");
+        RejectBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RejectButMouseClicked(evt);
+            }
+        });
 
         NextPatBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         NextPatBut.setText("Next >");
+        NextPatBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NextPatButMouseClicked(evt);
+            }
+        });
 
         PrevPatBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PrevPatBut.setText("Prev >");
+        PrevPatBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PrevPatButMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -313,6 +350,37 @@ public class SecretaryHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AcceptButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcceptButMouseClicked
+        UserOps.ActionRequest(true);
+        UserOps.NextRequest("Next");
+        if (UserOps.GetEndOfList()){
+            this.NextPatBut.setEnabled(false);
+        }
+        patReqBox.setText(UserOps.DisplayRequest());
+    }//GEN-LAST:event_AcceptButMouseClicked
+
+    private void NextPatButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NextPatButMouseClicked
+        UserOps.NextRequest("Next");
+        if (UserOps.GetEndOfList()){
+            this.NextPatBut.setEnabled(false);
+        }
+        this.PrevPatBut.setEnabled(true);
+        patReqBox.setText(UserOps.DisplayRequest());
+    }//GEN-LAST:event_NextPatButMouseClicked
+
+    private void PrevPatButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrevPatButMouseClicked
+        UserOps.NextRequest("Prev");
+        if(UserOps.getCurrentReq() == 1){
+            this.PrevPatBut.setEnabled(false);
+        }
+        this.NextPatBut.setEnabled(true);
+        patReqBox.setText(UserOps.DisplayRequest());
+    }//GEN-LAST:event_PrevPatButMouseClicked
+
+    private void RejectButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RejectButMouseClicked
+        UserOps.ActionRequest(false);
+    }//GEN-LAST:event_RejectButMouseClicked
 
     /**
      * @param args the command line arguments

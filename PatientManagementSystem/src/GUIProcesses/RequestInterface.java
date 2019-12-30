@@ -16,7 +16,7 @@ public interface RequestInterface {
     
     void NextRequest(String Direction);
     
-    String DisplayRequest(String[] array);
+    String DisplayRequest();
     
     void CreateRequest(String fName, String lName, String address, int age, String gender, String password);
     

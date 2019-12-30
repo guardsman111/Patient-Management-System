@@ -201,12 +201,14 @@ public class Login extends javax.swing.JFrame {
                 PatientHome PHome = new PatientHome();
             } else {
                 jLabel5.setVisible(true);
+                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'D'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
             } else {
                 jLabel5.setVisible(true);
+                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'S'){
@@ -214,12 +216,14 @@ public class Login extends javax.swing.JFrame {
                 SecretaryHome SHome = new SecretaryHome();
             } else {
                 jLabel5.setVisible(true);
+                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'D'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
             } else {
                 jLabel5.setVisible(true);
+                this.setVisible(false);
             }
         }
     }//GEN-LAST:event_LoginButMousePressed

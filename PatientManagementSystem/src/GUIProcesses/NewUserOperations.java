@@ -24,9 +24,10 @@ import java.nio.file.Paths;
 public class NewUserOperations implements RequestInterface {
 
     private int pending;
-    private File[] reqArray;
-    private int currentReq = 0;
+    public File[] reqArray;
+    private int currentReq = 1;
     private String[] newPatient;
+    private File currentReqF = null;
     
     private SecretaryHome sGUI = null;
     
@@ -40,15 +41,14 @@ public class NewUserOperations implements RequestInterface {
     
     public void UpdateList(){
         reqArray = new File("Database/Requests").listFiles();
+        
         if (currentReq != reqArray.length){
             if (currentReq < reqArray.length){
-                if (currentReq == 0){
+                if (currentReq == 1){
                     DisplayFirstReq();
                 }
-                currentReq = reqArray.length;
             }
-            else if (currentReq > reqArray.length){
-                currentReq = reqArray.length;                
+            else if (currentReq > reqArray.length){     
             }
         }
     }
@@ -64,19 +64,19 @@ public class NewUserOperations implements RequestInterface {
             for(int i = 0; i < newPatient.length; i++){
                 newPatient[i] = buffReader.readLine();
             }
+            currentReqF = check;
             buffReader.close();
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        
-        
     }
     
     @Override
     public boolean CheckForRequest() {
         try{
             if(Files.list(Paths.get("Database/Requests")).findAny().isPresent()){
+                UpdateList();
                 return true;
             }
             else {
@@ -97,14 +97,14 @@ public class NewUserOperations implements RequestInterface {
         
         
         try{
-            File check = new File("Database/Requests/Request0.txt");
-            if ((Direction.equals("Prev")) && (currentReq != 0)){
+            File check = new File("");
+            if ((Direction.equals("Prev")) && (currentReq > 0)){
                 currentReq -= 1;
                 check = reqArray[currentReq];
             } 
             else  {
                 currentReq += 1;
-                if (currentReq <= reqArray.length){
+                if (currentReq < reqArray.length){
                     check = reqArray[currentReq];
                 }
             }
@@ -114,17 +114,17 @@ public class NewUserOperations implements RequestInterface {
             for(int i = 0; i < newPatient.length; i++){
                 newPatient[i] = buffReader.readLine();
             }
+            currentReqF = check;
             buffReader.close();
         }
         catch(IOException e){
             e.printStackTrace();
         }
         
-        DisplayRequest(newPatient);
     }
 
     @Override
-    public String DisplayRequest(String[] array) {
+    public String DisplayRequest() {
         
         String newString = "";
 
@@ -181,11 +181,31 @@ public class NewUserOperations implements RequestInterface {
     public void ActionRequest(boolean action) {
         if (action){
             Patient tempP = new Patient(newPatient[1],newPatient[2],newPatient[3],Integer.parseInt(newPatient[4]),newPatient[5],newPatient[0]);
+            currentReqF.delete();
+            UpdateList();
+            currentReq -= 1;
+        } else {
+            //add are you sure box
         }
     }
     
-    public void GetGUI(SecretaryHome GUI){
-        sGUI = GUI;
+    public boolean GetEndOfList(){
+        if (reqArray == null){
+            return true;
+        }
+        else if (currentReq < reqArray.length -1){
+            return false;
+        } else {
+            return true;
+        }
     }
     
+    public void SetGUI(SecretaryHome GUI){
+        sGUI = GUI;
+    }
+
+    public int getCurrentReq() {
+        return currentReq;
+    }
+
 }

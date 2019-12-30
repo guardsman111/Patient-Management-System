@@ -5,17 +5,23 @@
  */
 package GUIs;
 
+import GUIProcesses.NewUserOperations;
+
 /**
  *
  * @author Charlie Parsons
  */
 public class NewUser extends javax.swing.JFrame {
 
+    NewUserOperations UserOps;
+    
     /**
      * Creates new form NewUser
      */
     public NewUser() {
         initComponents();
+        UserOps = new NewUserOperations();
+        
     }
 
     /**
@@ -73,6 +79,11 @@ public class NewUser extends javax.swing.JFrame {
         GenderBox.setText("Gender");
 
         SubmitBut.setText("Submit Request");
+        SubmitBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SubmitButMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("<html>Create a request to create a new account. Please note this is for patients only your request must be approved  before you may make an appointment.");
@@ -92,30 +103,26 @@ public class NewUser extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(passwordLabel))
-                                .addGap(62, 62, 62)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SubmitBut, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(GivenNBox)
-                                        .addComponent(SurNBox)
-                                        .addComponent(AddressBox, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                        .addComponent(AgeBox)
-                                        .addComponent(GenderBox)
-                                        .addComponent(PasswordBox)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(passwordLabel))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SubmitBut, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(GivenNBox)
+                                .addComponent(SurNBox)
+                                .addComponent(AddressBox, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                .addComponent(AgeBox)
+                                .addComponent(GenderBox)
+                                .addComponent(PasswordBox)))
+                        .addGap(0, 158, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,6 +163,12 @@ public class NewUser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SubmitButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubmitButMouseClicked
+        UserOps.CreateRequest(GivenNBox.getText(), SurNBox.getText(), AddressBox.getText(), Integer.parseInt(AgeBox.getText()), GenderBox.getText(), PasswordBox.getText());
+        
+        this.dispose();
+    }//GEN-LAST:event_SubmitButMouseClicked
 
     
     

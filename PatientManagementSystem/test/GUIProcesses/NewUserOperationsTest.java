@@ -37,6 +37,14 @@ public class NewUserOperationsTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void FirstUseTest(){
+        System.out.println("DoingFirstStartup");
+        NewUserOperations instance = new NewUserOperations();
+        Boolean Request = instance.CheckForRequest();
+        System.out.println(Request);
+    }
 
     /**
      * Test of CreateRequest method, of class NewUserOperations.
@@ -63,11 +71,11 @@ public class NewUserOperationsTest {
         instance.CreateRequest("Charlie", "Parsons", "address", 0, "gender", "password");
         System.out.println(Request);
         instance.UpdateList();
+        System.out.println(instance.DisplayRequest());
         instance.ActionRequest(true);
-        instance.CreateRequest("Charlie", "Parsons", "address", 0, "gender", "password");
+        System.out.println(instance.reqArray[0]);
         instance.NextRequest("Next");
         instance.ActionRequest(true);
-        instance.NextRequest("Next");
-        instance.ActionRequest(true);
+        
     }
 }
