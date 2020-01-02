@@ -10,6 +10,7 @@ package GUIProcesses;
  * @author Charlie Parsons
  */
 public interface RequestInterface {
+    
     Integer pending = 0;
     
     boolean CheckForRequest();
@@ -17,8 +18,6 @@ public interface RequestInterface {
     void NextRequest(String Direction);
     
     String DisplayRequest();
-    
-    void CreateRequest(String fName, String lName, String address, int age, String gender, String password);
     
     void ActionRequest(boolean action);
     

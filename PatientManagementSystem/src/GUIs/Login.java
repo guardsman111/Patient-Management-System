@@ -199,31 +199,32 @@ public class Login extends javax.swing.JFrame {
         if (IDField.getText().charAt(0) == 'P'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
                 PatientHome PHome = new PatientHome();
+                PHome.setCurrentPatientID(IDField.getText());
+                this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
-                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'D'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
-                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'S'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
                 SecretaryHome SHome = new SecretaryHome();
+                this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
-                this.setVisible(false);
             }
         }
         if (IDField.getText().charAt(0) == 'D'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
-                this.setVisible(false);
             }
         }
     }//GEN-LAST:event_LoginButMousePressed

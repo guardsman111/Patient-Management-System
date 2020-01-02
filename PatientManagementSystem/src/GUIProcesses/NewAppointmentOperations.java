@@ -7,6 +7,7 @@ package GUIProcesses;
 
 import GUIs.SecretaryHome;
 import MSUsers.Patient;
+import Main.Appointment;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,14 +20,15 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author Charlie Parsons
+ * @author Charlie
  */
-public class NewUserOperations implements RequestInterface {
+public class NewAppointmentOperations implements RequestInterface{
 
     private int pending;
     public File[] reqArray;
     private int currentReq = 1;
-    private String[] newPatient;
+    private String[] newAppointment;
+    
     private File currentReqF = null;
     
     private SecretaryHome sGUI = null;
@@ -35,12 +37,13 @@ public class NewUserOperations implements RequestInterface {
     
     FileWriter requestWriter;
     
-    public void NewUserOperations(){
+    
+    public void NewAppointmentOperations(){
         
     }
     
     public void UpdateList(){
-        reqArray = new File("Database/Requests/Users").listFiles();
+        reqArray = new File("Database/Requests/Appointments").listFiles();
         pending = reqArray.length - 1;
         
         if (currentReq != reqArray.length){
@@ -55,15 +58,15 @@ public class NewUserOperations implements RequestInterface {
     }
     
     public void DisplayFirstReq(){
-        newPatient = new String[6];
+        newAppointment = new String[6];
         
         try{
             File check = reqArray[1];
             
             requestReader = new FileReader(check);
             BufferedReader buffReader = new BufferedReader(requestReader);
-            for(int i = 0; i < newPatient.length; i++){
-                newPatient[i] = buffReader.readLine();
+            for(int i = 0; i < newAppointment.length; i++){
+                newAppointment[i] = buffReader.readLine();
             }
             currentReqF = check;
             buffReader.close();
@@ -76,7 +79,7 @@ public class NewUserOperations implements RequestInterface {
     @Override
     public boolean CheckForRequest() {
         try{
-            if(Files.list(Paths.get("Database/Requests/Users")).findAny().isPresent()){
+            if(Files.list(Paths.get("Database/Requests/Appointments")).findAny().isPresent()){
                 UpdateList();
                 return true;
             }
@@ -89,12 +92,10 @@ public class NewUserOperations implements RequestInterface {
         }
         return false;
     }
-    
-    //Direction refers to how it is travelling accross the list - i.e. next is +1 request, 
-    //or down the list, previous is -1 request, or up the list.
+
     @Override
     public void NextRequest(String Direction) {
-        newPatient = new String[6];
+        newAppointment = new String[6];
         
         
         try{
@@ -112,8 +113,8 @@ public class NewUserOperations implements RequestInterface {
             
             requestReader = new FileReader(check);
             BufferedReader buffReader = new BufferedReader(requestReader);
-            for(int i = 0; i < newPatient.length; i++){
-                newPatient[i] = buffReader.readLine();
+            for(int i = 0; i < newAppointment.length; i++){
+                newAppointment[i] = buffReader.readLine();
             }
             currentReqF = check;
             buffReader.close();
@@ -121,7 +122,6 @@ public class NewUserOperations implements RequestInterface {
         catch(IOException e){
             e.printStackTrace();
         }
-        
     }
 
     @Override
@@ -129,23 +129,38 @@ public class NewUserOperations implements RequestInterface {
         
         String newString = "";
 
-        for(int i = 0; i < newPatient.length; i++){
-            newString += newPatient[i] + "\n";
+        for(int i = 0; i < newAppointment.length; i++){
+            newString += newAppointment[i] + "\n";
         }
             
         return newString;
     }
     
-    public void CreateRequest(String fName, String lName, String address, int age, String gender, String password){
+    public String DisplayRequest(String part) {
+        
+        String newString = "";
+        
+        if (part.equals("Name")){
+            newString = newAppointment[5];
+        } else if (part.equals("Doctor")){
+            newString = newAppointment[1];
+        } else if (part.equals("Date")){
+            newString = newAppointment[2] + "/" + newAppointment[3] + "/" + newAppointment[4];
+        }
+            
+        return newString;
+    }
+    
+    public void CreateRequest(String patientID, String reason, String doctor, int day, String month, int year){
         
         try{
-            File check = new File("Database/Requests/Users/Request0.txt");
-            Path newReqPath = Paths.get("Database/Requests/Users/Request0.txt");
+            File check = new File("Database/Requests/Appointments/Request0.txt");
+            Path newReqPath = Paths.get("Database/Requests/Appointments/Request0.txt");
             Files.createDirectories(newReqPath.getParent());
             int count = 0;
             boolean exists = true;
             while(exists){
-                check = new File("Database/Requests/Users/Request" + Integer.toString(count) + ".txt");
+                check = new File("Database/Requests/Appointments/Request" + Integer.toString(count) + ".txt");
                 if (!check.exists()){
                     newReqPath = check.toPath();
                     exists = false;
@@ -158,17 +173,17 @@ public class NewUserOperations implements RequestInterface {
             Files.createFile(newReqPath);
             requestWriter = new FileWriter(check);
             BufferedWriter buffWriter = new BufferedWriter(requestWriter);
-            buffWriter.write(password);
+            buffWriter.write(reason);
             buffWriter.newLine();
-            buffWriter.write(fName);
+            buffWriter.write(doctor);
             buffWriter.newLine();
-            buffWriter.write(lName);
+            buffWriter.write(Integer.toString(day));
             buffWriter.newLine();
-            buffWriter.write(address);
+            buffWriter.write(month);
             buffWriter.newLine();
-            buffWriter.write(Integer.toString(age));
+            buffWriter.write(Integer.toString(year));
             buffWriter.newLine();
-            buffWriter.write(gender);
+            buffWriter.write(patientID);
             buffWriter.newLine();
             buffWriter.close();
         }
@@ -176,11 +191,11 @@ public class NewUserOperations implements RequestInterface {
             e.printStackTrace();
         }
     }
-
+    
     @Override
     public void ActionRequest(boolean action) {
         if (action){
-            Patient tempP = new Patient(newPatient[1],newPatient[2],newPatient[3],Integer.parseInt(newPatient[4]),newPatient[5],newPatient[0]);
+            Appointment tempApt = new Appointment(newAppointment[0],newAppointment[1],Integer.parseInt(newAppointment[2]),newAppointment[3],Integer.parseInt(newAppointment[4]),newAppointment[5]);
             currentReqF.delete();
             UpdateList();
             currentReq -= 1;

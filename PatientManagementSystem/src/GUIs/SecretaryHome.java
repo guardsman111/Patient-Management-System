@@ -5,6 +5,7 @@
  */
 package GUIs;
 
+import GUIProcesses.NewAppointmentOperations;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import GUIProcesses.NewUserOperations;
@@ -16,6 +17,7 @@ import GUIProcesses.NewUserOperations;
 public class SecretaryHome extends javax.swing.JFrame {
 
     NewUserOperations UserOps = null;
+    NewAppointmentOperations AptOps = null;
     
     /**
      * Creates new form SecretaryHome
@@ -36,6 +38,15 @@ public class SecretaryHome extends javax.swing.JFrame {
         
         UserOps = new NewUserOperations();
         UserOps.CheckForRequest();
+        PatRequestText.setText(Integer.toString(UserOps.getPending()));
+        AptOps = new NewAppointmentOperations();
+        AptOps.CheckForRequest();
+        AppRequestText.setText(Integer.toString(AptOps.getPending()));
+        if (AptOps.getPending() > 0){
+            PatientText.setText(AptOps.DisplayRequest("Name"));
+            DateText.setText(AptOps.DisplayRequest("Date"));
+            DoctorText.setText(AptOps.DisplayRequest("Doctor"));
+        }
         
     }
     
@@ -72,7 +83,7 @@ public class SecretaryHome extends javax.swing.JFrame {
         PatientText = new javax.swing.JLabel();
         DateText = new javax.swing.JLabel();
         DoctorText = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BookAptBut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,7 +148,7 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(14, 14, 14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(PatRequestText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -153,13 +164,10 @@ public class SecretaryHome extends javax.swing.JFrame {
                                         .addComponent(RejectBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addContainerGap())))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(NextPatBut))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(PrevPatBut)))
+                                    .addComponent(NextPatBut)
+                                    .addComponent(PrevPatBut))
                                 .addGap(0, 0, Short.MAX_VALUE))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
@@ -252,8 +260,13 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Book Appointment Time");
+        BookAptBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BookAptBut.setText("Book Appointment Time");
+        BookAptBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BookAptButMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -271,7 +284,7 @@ public class SecretaryHome extends javax.swing.JFrame {
                         .addGap(112, 112, 112))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(71, 71, 71)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AppRequestText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -293,8 +306,8 @@ public class SecretaryHome extends javax.swing.JFrame {
                             .addComponent(DocDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addComponent(jButton1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(BookAptBut)))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +330,7 @@ public class SecretaryHome extends javax.swing.JFrame {
                     .addComponent(DocDrop2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DocDrop3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BookAptBut)
                 .addContainerGap())
         );
 
@@ -358,6 +371,7 @@ public class SecretaryHome extends javax.swing.JFrame {
             this.NextPatBut.setEnabled(false);
         }
         patReqBox.setText(UserOps.DisplayRequest());
+        PatRequestText.setText(Integer.toString(UserOps.getPending()));
     }//GEN-LAST:event_AcceptButMouseClicked
 
     private void NextPatButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NextPatButMouseClicked
@@ -380,7 +394,23 @@ public class SecretaryHome extends javax.swing.JFrame {
 
     private void RejectButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RejectButMouseClicked
         UserOps.ActionRequest(false);
+        PatRequestText.setText(Integer.toString(UserOps.getPending()));
     }//GEN-LAST:event_RejectButMouseClicked
+
+    private void BookAptButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BookAptButMouseClicked
+        AptOps.ActionRequest(true);  
+        if (AptOps.getPending() < 1){        
+            AptOps.NextRequest("Next");
+            PatientText.setText(AptOps.DisplayRequest("Name"));
+            DateText.setText(AptOps.DisplayRequest("Date"));
+            DoctorText.setText(AptOps.DisplayRequest("Doctor"));
+            AppRequestText.setText(Integer.toString(AptOps.getPending()));
+        } else {
+            PatientText.setText("No more requests");
+            DateText.setText("None");
+            DoctorText.setText("None");
+        }
+    }//GEN-LAST:event_BookAptButMouseClicked
 
     /**
      * @param args the command line arguments
@@ -454,6 +484,7 @@ public class SecretaryHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptBut;
     private javax.swing.JLabel AppRequestText;
+    private javax.swing.JButton BookAptBut;
     private javax.swing.JLabel DateText;
     private javax.swing.JComboBox<String> DocDrop;
     private javax.swing.JComboBox<String> DocDrop1;
@@ -466,7 +497,6 @@ public class SecretaryHome extends javax.swing.JFrame {
     private javax.swing.JLabel PatientText;
     private javax.swing.JButton PrevPatBut;
     private javax.swing.JButton RejectBut;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
