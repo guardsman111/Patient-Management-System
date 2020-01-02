@@ -52,6 +52,8 @@ public class User_Template {
         buffWriter = new BufferedWriter(writer);
         buffWriter.write(password);
         buffWriter.newLine();
+        buffWriter.write(userID);
+        buffWriter.newLine();
         buffWriter.write(fName);
         buffWriter.newLine();
         buffWriter.write(lName);

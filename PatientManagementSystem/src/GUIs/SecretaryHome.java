@@ -208,18 +208,22 @@ public class SecretaryHome extends javax.swing.JFrame {
         AppRequestText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         AppRequestText.setText("0");
 
+        DocDrop.setEditable(true);
         DocDrop.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DocDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doctor" }));
 
+        DocDrop1.setEditable(true);
         DocDrop1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DocDrop1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Override Doctor or Date");
 
+        DocDrop2.setEditable(true);
         DocDrop2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DocDrop2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "Janurary", "Feburary", "March", "Arpil", "May", "June", "July", "August", "September", "October", "November", "December" }));
 
+        DocDrop3.setEditable(true);
         DocDrop3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DocDrop3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2020", "2021" }));
 

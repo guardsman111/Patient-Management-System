@@ -5,6 +5,11 @@
  */
 package MSUsers;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Doctor User
  *
@@ -13,6 +18,12 @@ package MSUsers;
         
 public class Doctor extends User_Template {
 
+    public String[] doctors;
+    public File[] docArray;
+    
+    FileReader docReader;
+    BufferedReader buffReader;
+    
     public Doctor() {
     }
     
@@ -20,5 +31,22 @@ public class Doctor extends User_Template {
         CreateUser("Doctor", fName, sName, address, password);
     }
     
-    
+    public String[] FindDoctors(){
+        docArray = new File("Database/Requests/Users/Doctor").listFiles();
+        doctors = new String[docArray.length - 1];
+        try{
+            for (int i = 0; i < docArray.length; i++){
+                docReader = new FileReader(docArray[i]);
+                BufferedReader buffReader = new BufferedReader(docReader);
+                buffReader.readLine();
+                doctors[i] = buffReader.readLine();
+                buffReader.close();
+            }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        return doctors;
+    }
 }

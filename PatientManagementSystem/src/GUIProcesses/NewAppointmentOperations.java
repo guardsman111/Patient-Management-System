@@ -37,6 +37,7 @@ public class NewAppointmentOperations implements RequestInterface{
     
     FileWriter requestWriter;
     
+    FileWriter appointmentWriter;
     
     public void NewAppointmentOperations(){
         
@@ -151,7 +152,7 @@ public class NewAppointmentOperations implements RequestInterface{
         return newString;
     }
     
-    public void CreateRequest(String patientID, String reason, String doctor, int day, String month, int year){
+    public void CreateRequest(String patientID, String reason, String doctorID, int day, String month, int year){
         
         try{
             File check = new File("Database/Requests/Appointments/Request0.txt");
@@ -175,7 +176,7 @@ public class NewAppointmentOperations implements RequestInterface{
             BufferedWriter buffWriter = new BufferedWriter(requestWriter);
             buffWriter.write(reason);
             buffWriter.newLine();
-            buffWriter.write(doctor);
+            buffWriter.write(doctorID);
             buffWriter.newLine();
             buffWriter.write(Integer.toString(day));
             buffWriter.newLine();
@@ -199,6 +200,23 @@ public class NewAppointmentOperations implements RequestInterface{
             currentReqF.delete();
             UpdateList();
             currentReq -= 1;
+            try{
+                Path path = Paths.get("Database/Users/Doctor/" + newAppointment[1]);
+                Files.createDirectories(path.getParent());
+                int randomID = (int)(Math.random()*((9999-1000)+1))+1000;
+                path = Paths.get("Database/Users/Doctor/" + newAppointment[1] + "/" + newAppointment[5] + randomID + ".txt");
+                Files.createDirectories(path.getParent());
+                Files.createFile(path);
+                requestWriter = new FileWriter("Database/Users/Doctor/" + newAppointment[1] + "/" + newAppointment[5] + randomID + ".txt");
+                BufferedWriter buffWriter = new BufferedWriter(requestWriter);
+                buffWriter.write(newAppointment[5]);
+                buffWriter.newLine();
+                buffWriter.write(newAppointment[0]);
+                buffWriter.newLine();
+                buffWriter.close();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
         } else {
             //add are you sure box
         }

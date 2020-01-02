@@ -6,7 +6,11 @@
 package GUIs;
 
 import GUIProcesses.NewAppointmentOperations;
+import MSUsers.Doctor;
 import Main.Appointment;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -24,6 +28,21 @@ public class PatientHome extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         AptOps = new NewAppointmentOperations();
+        Doctor doctorL = new Doctor();
+        String[] doctors = doctorL.FindDoctors();
+        for (int i = 0; i < doctors.length; i++){
+            String tempString;
+            tempString = doctors[i];
+            try{
+                FileReader reader = new FileReader("Database/Users/Doctors/" + doctors[i] + ".txt");
+                BufferedReader buffReader = new BufferedReader(reader);
+                tempString += " " + buffReader.readLine();
+                tempString += " " + buffReader.readLine();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+            DoctorCombi.addItem(tempString);
+        }
     }
 
     /**
@@ -266,7 +285,9 @@ public class PatientHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubmitButMouseClicked
-        AptOps.CreateRequest(currentPatientID, ReasonBox.getText(), DoctorCombi.getSelectedItem().toString(), Integer.parseInt(DateDay.getSelectedItem().toString()), DateMonth.getSelectedItem().toString(), Integer.parseInt(DateYear.getSelectedItem().toString()));
+        String tempDoc = DoctorCombi.getSelectedItem().toString();
+        tempDoc.substring(0,5);
+        AptOps.CreateRequest(currentPatientID, ReasonBox.getText(), tempDoc, Integer.parseInt(DateDay.getSelectedItem().toString()), DateMonth.getSelectedItem().toString(), Integer.parseInt(DateYear.getSelectedItem().toString()));
     }//GEN-LAST:event_SubmitButMouseClicked
 
     /**
