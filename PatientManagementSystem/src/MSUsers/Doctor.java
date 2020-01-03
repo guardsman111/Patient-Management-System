@@ -32,7 +32,7 @@ public class Doctor extends User_Template {
     }
     
     public String[] FindDoctors(){
-        docArray = new File("Database/Requests/Users/Doctor").listFiles();
+        docArray = new File("Database/Users/Doctor").listFiles();
         doctors = new String[docArray.length - 1];
         try{
             for (int i = 0; i < docArray.length; i++){
@@ -40,6 +40,8 @@ public class Doctor extends User_Template {
                 BufferedReader buffReader = new BufferedReader(docReader);
                 buffReader.readLine();
                 doctors[i] = buffReader.readLine();
+                doctors[i] += " " + buffReader.readLine();
+                doctors[i] += " " + buffReader.readLine();
                 buffReader.close();
             }
         }

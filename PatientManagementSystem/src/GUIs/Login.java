@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import GUIProcesses.LoginPress;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -71,6 +72,11 @@ public class Login extends javax.swing.JFrame {
         IDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDFieldActionPerformed(evt);
+            }
+        });
+        IDField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IDFieldKeyPressed(evt);
             }
         });
 
@@ -198,7 +204,7 @@ public class Login extends javax.swing.JFrame {
         
         if (IDField.getText().charAt(0) == 'P'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
-                PatientHome PHome = new PatientHome();
+                PatientHome PHome = new PatientHome(this);
                 PHome.setCurrentPatientID(IDField.getText());
                 this.setVisible(false);
             } else {
@@ -230,12 +236,19 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginButMousePressed
 
     private void IDFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDFieldMouseClicked
+        if (IDField.getText().equals("User ID"))
         IDField.setText("");
     }//GEN-LAST:event_IDFieldMouseClicked
 
     private void PasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordFieldMouseClicked
+        if (PasswordField.getText().equals("People Suck"))
         PasswordField.setText("");
     }//GEN-LAST:event_PasswordFieldMouseClicked
+
+    private void IDFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB)
+            IDField.setNextFocusableComponent(PasswordField);
+    }//GEN-LAST:event_IDFieldKeyPressed
 
     /**
      * @param args the command line arguments

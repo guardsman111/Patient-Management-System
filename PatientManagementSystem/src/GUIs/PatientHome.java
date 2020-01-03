@@ -20,10 +20,31 @@ public class PatientHome extends javax.swing.JFrame {
 
     private String currentPatientID;
     NewAppointmentOperations AptOps;
+    private Login loginScr;
     
     /**
      * Creates new form PatientHome
      */
+    public PatientHome(Login login) {
+        initComponents();
+        loginScr = login;
+        this.setVisible(true);
+        AptOps = new NewAppointmentOperations();
+        Doctor doctorL = new Doctor();
+        String[] doctors = doctorL.FindDoctors();
+        for (int i = 0; i < doctors.length; i++){
+            String tempString;
+            tempString = doctors[i];
+            DoctorCombi.addItem(tempString);
+        }
+        
+        for (int i = 0; i < doctors.length; i++){
+            String tempString;
+            tempString = doctors[i];
+            DocRatingCombi.addItem(tempString);
+        }
+    }
+    
     public PatientHome() {
         initComponents();
         this.setVisible(true);
@@ -33,15 +54,13 @@ public class PatientHome extends javax.swing.JFrame {
         for (int i = 0; i < doctors.length; i++){
             String tempString;
             tempString = doctors[i];
-            try{
-                FileReader reader = new FileReader("Database/Users/Doctors/" + doctors[i] + ".txt");
-                BufferedReader buffReader = new BufferedReader(reader);
-                tempString += " " + buffReader.readLine();
-                tempString += " " + buffReader.readLine();
-            } catch(IOException e){
-                e.printStackTrace();
-            }
             DoctorCombi.addItem(tempString);
+        }
+        
+        for (int i = 0; i < doctors.length; i++){
+            String tempString;
+            tempString = doctors[i];
+            DocRatingCombi.addItem(tempString);
         }
     }
 
@@ -74,6 +93,7 @@ public class PatientHome extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         DocRatingCombi = new javax.swing.JComboBox<>();
         DocRatingText = new javax.swing.JLabel();
+        LogOut = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -183,7 +203,7 @@ public class PatientHome extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(SubmitBut)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -213,8 +233,10 @@ public class PatientHome extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("View Doctors");
 
-        DocRatingCombi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        DocRatingCombi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DocRatingCombi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
 
+        DocRatingText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DocRatingText.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -247,6 +269,14 @@ public class PatientHome extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        LogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LogOut.setText("Log Out");
+        LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,7 +286,9 @@ public class PatientHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(260, 260, 260)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LogOut)
+                        .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +302,9 @@ public class PatientHome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(LogOut))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,6 +323,11 @@ public class PatientHome extends javax.swing.JFrame {
         tempDoc.substring(0,5);
         AptOps.CreateRequest(currentPatientID, ReasonBox.getText(), tempDoc, Integer.parseInt(DateDay.getSelectedItem().toString()), DateMonth.getSelectedItem().toString(), Integer.parseInt(DateYear.getSelectedItem().toString()));
     }//GEN-LAST:event_SubmitButMouseClicked
+
+    private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
+        loginScr.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -340,6 +379,7 @@ public class PatientHome extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> DocRatingCombi;
     private javax.swing.JLabel DocRatingText;
     private javax.swing.JComboBox<String> DoctorCombi;
+    private javax.swing.JButton LogOut;
     private javax.swing.JTextArea ReasonBox;
     private javax.swing.JButton SubmitBut;
     private javax.swing.JLabel jLabel1;
