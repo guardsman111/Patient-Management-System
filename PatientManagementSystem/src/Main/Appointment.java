@@ -87,4 +87,20 @@ public class Appointment {
         ID = "100";
         return ID;
     }
+    
+    public String GetAppointment(String path){
+        File appointment = new File(path);
+        String tempString = appointment.getName();
+        String[] splitString = tempString.split("P");
+        tempString = splitString[0];
+        try{
+            FileReader reader = new FileReader(appointment);
+            BufferedReader buffReader = new BufferedReader(reader);
+            tempString += " \n" + " \n" + buffReader.readLine();
+            tempString += " \n" + buffReader.readLine();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return tempString;
+    }
 }

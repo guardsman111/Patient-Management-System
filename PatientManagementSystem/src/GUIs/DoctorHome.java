@@ -5,6 +5,7 @@
  */
 package GUIs;
 
+import Main.Appointment;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +25,7 @@ public class DoctorHome extends javax.swing.JFrame {
     private Login loginScr;
     private String currentDoctor;
     private File[] appointments;
+    private String LongDocID;
     
     /**
      * Creates new form DoctorHome
@@ -33,24 +35,24 @@ public class DoctorHome extends javax.swing.JFrame {
         loginScr = login;
         this.setVisible(true);
         currentDoctor = docID;
-        String tempDocID = docID + " ";
+        LongDocID = docID + " ";
         try{
             FileReader reader = new FileReader("Database/Users/Doctor/" + currentDoctor + ".txt");
             BufferedReader buffReader = new BufferedReader(reader);
             buffReader.readLine();
             buffReader.readLine();
-            tempDocID += buffReader.readLine() + " ";
-            tempDocID += buffReader.readLine();
+            LongDocID += buffReader.readLine() + " ";
+            LongDocID += buffReader.readLine();
         } catch(IOException e){
             e.printStackTrace();
         }
-        appointments = new File("Database/Users/Doctor/" + tempDocID).listFiles();
+        appointments = new File("Database/Users/Doctor/" + LongDocID).listFiles();
         if(appointments != null){
             for (int i = 0; i < appointments.length; i++){
                 AppointmentList.addItem(appointments[i].getName());
             }
         } else {
-            File tempFile = new File("Database/Users/Doctor/" + tempDocID);
+            File tempFile = new File("Database/Users/Doctor/" + LongDocID);
             String tempString = tempFile.getName();
             AppointmentList.addItem(tempString);
         }
@@ -74,10 +76,10 @@ public class DoctorHome extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        AppointmentDisplay = new javax.swing.JTextArea();
+        OpenBut = new javax.swing.JButton();
         AppointmentList = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        LogOutBut = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -94,13 +96,24 @@ public class DoctorHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Booked Appointments");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jScrollPane2.setViewportView(jTextArea1);
+        AppointmentDisplay.setColumns(20);
+        AppointmentDisplay.setRows(5);
+        AppointmentDisplay.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jScrollPane2.setViewportView(AppointmentDisplay);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Open Appointment");
+        OpenBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        OpenBut.setText("Start Appointment");
+        OpenBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OpenButMouseClicked(evt);
+            }
+        });
+
+        AppointmentList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                AppointmentListItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,7 +128,7 @@ public class DoctorHome extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addComponent(jButton1)))
+                                .addComponent(OpenBut)))
                         .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -133,12 +146,17 @@ public class DoctorHome extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(OpenBut)
                 .addGap(0, 20, Short.MAX_VALUE))
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Log Out");
+        LogOutBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LogOutBut.setText("Log Out");
+        LogOutBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutButMouseClicked(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -162,7 +180,7 @@ public class DoctorHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 23, Short.MAX_VALUE)
+                        .addGap(0, 27, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +218,7 @@ public class DoctorHome extends javax.swing.JFrame {
                         .addGap(160, 160, 160)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(LogOutBut))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,7 +233,7 @@ public class DoctorHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
-                    .addComponent(jButton2))
+                    .addComponent(LogOutBut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,6 +245,21 @@ public class DoctorHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AppointmentListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_AppointmentListItemStateChanged
+        Appointment temp = new Appointment();
+        AppointmentDisplay.setText(temp.GetAppointment("Database/Users/Doctor/" + LongDocID + "/" + AppointmentList.getSelectedItem()));
+    }//GEN-LAST:event_AppointmentListItemStateChanged
+
+    private void LogOutButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutButMouseClicked
+        loginScr.Reset();
+        loginScr.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogOutButMouseClicked
+
+    private void OpenButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OpenButMouseClicked
+        DoctorAppointmentScreen aptScr = new DoctorAppointmentScreen("Database/Users/Doctor/" + LongDocID + "/" + AppointmentList.getSelectedItem());
+    }//GEN-LAST:event_OpenButMouseClicked
 
     /**
      * @param args the command line arguments
@@ -264,9 +297,10 @@ public class DoctorHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AppointmentDisplay;
     private javax.swing.JComboBox<String> AppointmentList;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton LogOutBut;
+    private javax.swing.JButton OpenBut;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -274,7 +308,6 @@ public class DoctorHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables

@@ -262,8 +262,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordFieldMouseClicked
 
     private void IDFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_TAB)
-            IDField.setNextFocusableComponent(PasswordField);
+        
     }//GEN-LAST:event_IDFieldKeyPressed
 
     private void NoAccountButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoAccountButMouseClicked
@@ -308,6 +307,12 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+    }
+    
+    public void Reset(){
+        jLabel5.setVisible(false);
+        IDField.setText("User ID");
+        PasswordField.setText("People Suck");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
