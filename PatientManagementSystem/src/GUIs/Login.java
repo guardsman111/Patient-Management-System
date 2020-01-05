@@ -47,10 +47,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        NoAccountBut = new javax.swing.JLabel();
+        NewAdminBut = new javax.swing.JLabel();
         PasswordField = new javax.swing.JPasswordField();
         LoginBut = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        NoAccountBut = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -89,15 +90,15 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Charlie's Doctors Patient Manangement System");
 
-        NoAccountBut.setBackground(new java.awt.Color(255, 51, 51));
-        NoAccountBut.setForeground(new java.awt.Color(102, 102, 255));
-        NoAccountBut.setText(" Not have an Account?");
-        NoAccountBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        NewAdminBut.setBackground(new java.awt.Color(255, 51, 51));
+        NewAdminBut.setForeground(new java.awt.Color(102, 102, 255));
+        NewAdminBut.setText("New Admin Account");
+        NewAdminBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NoAccountButMouseClicked(evt);
+                NewAdminButMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                NoAccountButMousePressed(evt);
+                NewAdminButMousePressed(evt);
             }
         });
 
@@ -124,6 +125,18 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
         jLabel5.setText("Incorrect User ID or Password!");
 
+        NoAccountBut.setBackground(new java.awt.Color(255, 51, 51));
+        NoAccountBut.setForeground(new java.awt.Color(102, 102, 255));
+        NoAccountBut.setText(" Not have an Account?");
+        NoAccountBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NoAccountButMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NoAccountButMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,26 +144,28 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(NoAccountBut)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(NoAccountBut))
                 .addGap(97, 97, 97))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IDField, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(PasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(LoginBut))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(157, 157, 157)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(NewAdminBut)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IDField, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                            .addComponent(PasswordField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,7 +186,9 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(LoginBut)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(NoAccountBut)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NoAccountBut)
+                    .addComponent(NewAdminBut))
                 .addGap(42, 42, 42))
         );
 
@@ -182,15 +199,14 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IDFieldActionPerformed
 
-    private void NoAccountButMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoAccountButMousePressed
+    private void NewAdminButMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewAdminButMousePressed
         //NewUser NUFrame = new NewUser();
-    }//GEN-LAST:event_NoAccountButMousePressed
+    }//GEN-LAST:event_NewAdminButMousePressed
 
-    private void NoAccountButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoAccountButMouseClicked
-        NewUser NUFrame = new NewUser();
-        NUFrame.setVisible(true);
-        System.out.println("pressed new user");
-    }//GEN-LAST:event_NoAccountButMouseClicked
+    private void NewAdminButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewAdminButMouseClicked
+        NewAdmin NAFrame = new NewAdmin();
+        NAFrame.setVisible(true);
+    }//GEN-LAST:event_NewAdminButMouseClicked
 
     private void LoginButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButMouseEntered
         // TODO add your handling code here:
@@ -200,12 +216,10 @@ public class Login extends javax.swing.JFrame {
     private void LoginButMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButMousePressed
         // TODO add your handling code here:
         
-        System.out.println("pressed Login");
         
         if (IDField.getText().charAt(0) == 'P'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
-                PatientHome PHome = new PatientHome(this);
-                PHome.setCurrentPatientID(IDField.getText());
+                PatientHome PHome = new PatientHome(this, IDField.getText());
                 this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
@@ -213,6 +227,7 @@ public class Login extends javax.swing.JFrame {
         }
         if (IDField.getText().charAt(0) == 'D'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                DoctorHome DHome = new DoctorHome(this, IDField.getText());
                 this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
@@ -226,8 +241,9 @@ public class Login extends javax.swing.JFrame {
                 jLabel5.setVisible(true);
             }
         }
-        if (IDField.getText().charAt(0) == 'D'){
+        if (IDField.getText().charAt(0) == 'A'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
+                AdminHome AHome = new AdminHome();
                 this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
@@ -249,6 +265,15 @@ public class Login extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_TAB)
             IDField.setNextFocusableComponent(PasswordField);
     }//GEN-LAST:event_IDFieldKeyPressed
+
+    private void NoAccountButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoAccountButMouseClicked
+        NewUser NUFrame = new NewUser();
+        NUFrame.setVisible(true);
+    }//GEN-LAST:event_NoAccountButMouseClicked
+
+    private void NoAccountButMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoAccountButMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoAccountButMousePressed
 
     /**
      * @param args the command line arguments
@@ -288,6 +313,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField IDField;
     private javax.swing.JButton LoginBut;
+    private javax.swing.JLabel NewAdminBut;
     private javax.swing.JLabel NoAccountBut;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel jLabel1;

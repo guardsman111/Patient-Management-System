@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Christiana" name="MSUsers.User_TemplateTest" skipped="0" tests="3" time="0.138" timestamp="2020-01-03T16:21:41">
+<testsuite errors="0" failures="0" hostname="Christiana" name="MSUsers.User_TemplateTest" skipped="0" tests="3" time="0.118" timestamp="2020-01-04T14:21:24">
   <properties>
     <property name="netbeans.autoupdate.country" value="GB" />
     <property name="nb.wait.for.caches" value="true" />
@@ -38,7 +38,7 @@
     <property name="user.name" value="Charlie" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MSUsers.User_TemplateTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\test\results\TEST-MSUsers.User_TemplateTest.xml crashfile=C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\junitvmwatcher4731592489876996766.properties propsfile=C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\junit8538172210556808853.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MSUsers.User_TemplateTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\test\results\TEST-MSUsers.User_TemplateTest.xml crashfile=C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\junitvmwatcher4755445373400319171.properties propsfile=C:\Users\Charlie\Documents\Work\Year2\Soft252\Patient Management System\Patient-Management-System\PatientManagementSystem\build\junit7882494939684170330.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -185,7 +185,6 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="dist.jar" value="dist/PatientManagementSystem.jar" />
     <property name="libs.spring-framework400.maven-pom" value="" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="PatientManagementSystem" />
     <property name="netbeans.hash.code" value="unique=NB_EXTIDE_JAVA07ce21a31-32be-4ba6-bf01-770d748908d6_1b30ad00-0f25-4a97-b333-80f597a789a7" />
@@ -236,7 +235,7 @@
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="java.specification.version" value="1.8" />
     <property name="libs.jaxws21.maven-pom" value="" />
-    <property name="java.vm.info" value="mixed mode" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
     <property name="nb.junit.batch" value="true" />
     <property name="junit.forkmode" value="perTest" />
     <property name="sun.boot.class.path" value="C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_73\jre\classes" />
@@ -301,8 +300,8 @@
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="patientmanagementsystem.PatientManagementSystem" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 9 2016" />
     <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
@@ -312,8 +311,8 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
   <testcase classname="MSUsers.User_TemplateTest" name="testGenerateID_String" time="0.004" />
-  <testcase classname="MSUsers.User_TemplateTest" name="testCreateUser" time="0.022" />
-  <testcase classname="MSUsers.User_TemplateTest" name="GenerateTestUsers" time="0.041" />
+  <testcase classname="MSUsers.User_TemplateTest" name="testCreateUser" time="0.02" />
+  <testcase classname="MSUsers.User_TemplateTest" name="GenerateTestUsers" time="0.025" />
   <system-out><![CDATA[GenerateID
 CreateUser
 ]]></system-out>

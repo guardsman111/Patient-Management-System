@@ -200,14 +200,15 @@ public class NewAppointmentOperations implements RequestInterface{
             currentReqF.delete();
             UpdateList();
             currentReq -= 1;
+            String tempDate = newAppointment[2] + "-" + newAppointment[3] + "-" + newAppointment[4];
             try{
                 Path path = Paths.get("Database/Users/Doctor/" + newAppointment[1]);
                 Files.createDirectories(path.getParent());
-                int randomID = (int)(Math.random()*((9999-1000)+1))+1000;
-                path = Paths.get("Database/Users/Doctor/" + newAppointment[1] + "/" + newAppointment[5] + randomID + ".txt");
+                int randomID = (int)(Math.random()*((99-10)+1))+10;
+                path = Paths.get("Database/Users/Doctor/" + newAppointment[1] + "/" + tempDate  + newAppointment[5] + randomID + ".txt");
                 Files.createDirectories(path.getParent());
                 Files.createFile(path);
-                requestWriter = new FileWriter("Database/Users/Doctor/" + newAppointment[1] + "/" + newAppointment[5] + randomID + ".txt");
+                requestWriter = new FileWriter("Database/Users/Doctor/" + newAppointment[1] + "/" + tempDate + newAppointment[5] + randomID + ".txt");
                 BufferedWriter buffWriter = new BufferedWriter(requestWriter);
                 buffWriter.write(newAppointment[5]);
                 buffWriter.newLine();

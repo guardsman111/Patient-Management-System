@@ -5,17 +5,36 @@
  */
 package GUIs;
 
+import MSUsers.Doctor;
+import MSUsers.Secretary;
+import java.awt.Color;
+
 /**
  *
  * @author Charlie
  */
 public class AdminHome extends javax.swing.JFrame {
 
+    private Login loginScr;
+    private String[] doctors;
     /**
      * Creates new form AdminHome
      */
+    public AdminHome(Login login) {
+        initComponents();
+        loginScr = login;
+        this.setVisible(true);
+        
+        for (int i = 0; i < doctors.length; i++){
+            String tempString;
+            tempString = doctors[i];
+            DoctorCombo.addItem(tempString);
+        }
+    }
+    
     public AdminHome() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -30,18 +49,18 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        DoctorCombo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        SecRadio = new javax.swing.JRadioButton();
+        DocRadio = new javax.swing.JRadioButton();
+        FirstNameField = new javax.swing.JTextField();
+        LastNameField = new javax.swing.JTextField();
+        AddressField = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JTextField();
+        CreateBut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,8 +72,13 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Doctors");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        DoctorCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DoctorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
+        DoctorCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DoctorComboActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Rating");
@@ -70,7 +94,7 @@ public class AdminHome extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(DoctorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(jLabel2)
@@ -89,7 +113,7 @@ public class AdminHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DoctorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -102,26 +126,61 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Create Account");
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jRadioButton1.setText("Secretary");
+        SecRadio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        SecRadio.setText("Secretary");
+        SecRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SecRadioMouseClicked(evt);
+            }
+        });
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jRadioButton2.setText("Doctor");
+        DocRadio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        DocRadio.setText("Doctor");
+        DocRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DocRadioMouseClicked(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("First Name");
+        FirstNameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        FirstNameField.setText("First Name");
+        FirstNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FirstNameFieldMouseClicked(evt);
+            }
+        });
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.setText("Last Name");
+        LastNameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LastNameField.setText("Last Name");
+        LastNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LastNameFieldMouseClicked(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField3.setText("Address");
+        AddressField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        AddressField.setText("Address");
+        AddressField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddressFieldMouseClicked(evt);
+            }
+        });
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField4.setText("Temporary Password");
+        PasswordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        PasswordField.setText("Temporary Password");
+        PasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PasswordFieldMouseClicked(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Create");
+        CreateBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CreateBut.setText("Create");
+        CreateBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CreateButMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,29 +190,29 @@ public class AdminHome extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField1))
+                        .addComponent(FirstNameField))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SecRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                        .addComponent(DocRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField2))
+                        .addComponent(LastNameField))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField3))
+                        .addComponent(AddressField))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField4)))
+                        .addComponent(PasswordField)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(jButton1)
+                .addComponent(CreateBut)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -163,18 +222,18 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(SecRadio)
+                    .addComponent(DocRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(FirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(CreateBut)
                 .addContainerGap())
         );
 
@@ -209,6 +268,53 @@ public class AdminHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CreateButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateButMouseClicked
+        if (SecRadio.isSelected()){
+            Secretary tempSec = new Secretary(FirstNameField.getText(),LastNameField.getText(),AddressField.getText(),PasswordField.getText());
+        } else if (DocRadio.isSelected()){
+            Doctor tempSec = new Doctor("TempID",FirstNameField.getText(),LastNameField.getText(),AddressField.getText(),PasswordField.getText());
+        } else {
+            jLabel5.setText("Choose Type!");
+            jLabel5.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_CreateButMouseClicked
+
+    private void DocRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DocRadioMouseClicked
+        SecRadio.setSelected(false);
+    }//GEN-LAST:event_DocRadioMouseClicked
+
+    private void SecRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SecRadioMouseClicked
+        DocRadio.setSelected(false);
+    }//GEN-LAST:event_SecRadioMouseClicked
+
+    private void AddressFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddressFieldMouseClicked
+        if(AddressField.getText().equals("Address")){
+            AddressField.setText("");
+        }
+    }//GEN-LAST:event_AddressFieldMouseClicked
+
+    private void FirstNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstNameFieldMouseClicked
+        if(FirstNameField.getText().equals("First Name")){
+            FirstNameField.setText("");
+        }
+    }//GEN-LAST:event_FirstNameFieldMouseClicked
+
+    private void LastNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LastNameFieldMouseClicked
+        if(LastNameField.getText().equals("Last Name")){
+            LastNameField.setText("");
+        }
+    }//GEN-LAST:event_LastNameFieldMouseClicked
+
+    private void PasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordFieldMouseClicked
+        if(PasswordField.getText().equals("Temporary Password")){
+            PasswordField.setText("");
+        }
+    }//GEN-LAST:event_PasswordFieldMouseClicked
+
+    private void DoctorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoctorComboActionPerformed
+        
+    }//GEN-LAST:event_DoctorComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,8 +352,14 @@ public class AdminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField AddressField;
+    private javax.swing.JButton CreateBut;
+    private javax.swing.JRadioButton DocRadio;
+    private javax.swing.JComboBox<String> DoctorCombo;
+    private javax.swing.JTextField FirstNameField;
+    private javax.swing.JTextField LastNameField;
+    private javax.swing.JTextField PasswordField;
+    private javax.swing.JRadioButton SecRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -255,11 +367,5 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

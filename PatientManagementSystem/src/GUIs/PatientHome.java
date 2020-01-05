@@ -25,9 +25,10 @@ public class PatientHome extends javax.swing.JFrame {
     /**
      * Creates new form PatientHome
      */
-    public PatientHome(Login login) {
+    public PatientHome(Login login, String ID) {
         initComponents();
         loginScr = login;
+        currentPatientID = ID;
         this.setVisible(true);
         AptOps = new NewAppointmentOperations();
         Doctor doctorL = new Doctor();
@@ -250,11 +251,11 @@ public class PatientHome extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(DocRatingCombi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addComponent(DocRatingText)))
+                        .addComponent(DocRatingText))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(DocRatingCombi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(

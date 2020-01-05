@@ -30,7 +30,7 @@ public class LoginPress {
             reader = new FileReader("Database/Users/Patients/" + enteredID + ".txt");
         }
         else if (enteredID.charAt(0) == 'D'){
-            reader = new FileReader("Database/Users/Doctors/" + enteredID + ".txt");
+            reader = new FileReader("Database/Users/Doctor/" + enteredID + ".txt");
         }
         else if (enteredID.charAt(0) == 'S'){
             reader = new FileReader("Database/Users/Secretary/" + enteredID + ".txt");
