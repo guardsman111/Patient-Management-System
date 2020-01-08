@@ -15,6 +15,8 @@ import java.io.IOException;
 
 /**
  *
+ * allows a patient to request appointments and view upcoming appointments
+ * 
  * @author Charlie Parsons
  */
 public class PatientHome extends javax.swing.JFrame {

@@ -15,6 +15,9 @@ import java.nio.file.Paths;
 
 /**
  *
+ * Checks user ID's list exists and creates it if not.
+ * Checks whether User ID's already exist to prevent duplicate account creation
+ * 
  * @author Charlie Parsons
  */
 public class IDCheck {

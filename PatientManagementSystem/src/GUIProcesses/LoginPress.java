@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * 
+ * Action caused by pressing login, checks the usersID to password to allow for login. 
+ * Separated it from main login code to try create a more secure login
  *
  * @author Charlie Parsons
  */

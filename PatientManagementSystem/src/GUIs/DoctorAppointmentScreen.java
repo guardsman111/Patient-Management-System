@@ -20,7 +20,10 @@ import javax.swing.ListModel;
 
 /**
  *
- * @author Charlie
+ * @author Charlie Parsons
+ * 
+ * Doctor can add notes here and diagnose the patient, then create a prescription.
+ * 
  */
 public class DoctorAppointmentScreen extends javax.swing.JFrame {
     

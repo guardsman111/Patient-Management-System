@@ -11,6 +11,8 @@ import java.awt.Color;
 
 /**
  *
+ * Where the Admins can create doctor and secretary users
+ * 
  * @author Charlie
  */
 public class AdminHome extends javax.swing.JFrame {

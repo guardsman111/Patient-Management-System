@@ -11,7 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Doctor User
+ * 
+ * Only useful method is the find doctors method, which lists all doctor user files for other operations
  *
  * @author Charlie Parsons
  */

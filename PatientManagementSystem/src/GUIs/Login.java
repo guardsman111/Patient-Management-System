@@ -19,6 +19,8 @@ import java.awt.event.KeyEvent;
 
 /**
  *
+ * Users can log in here and also open create account menus
+ * 
  * @author Charlie Parsons
  */
 public class Login extends javax.swing.JFrame {

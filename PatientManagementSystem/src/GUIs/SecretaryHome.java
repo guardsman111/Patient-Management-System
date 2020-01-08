@@ -13,6 +13,8 @@ import GUIProcesses.NewUserOperations;
 /**
  *
  * @author Charlie Parsons
+ * 
+ * Allows the secretary to accept requests and book appointments
  */
 public class SecretaryHome extends javax.swing.JFrame {
 

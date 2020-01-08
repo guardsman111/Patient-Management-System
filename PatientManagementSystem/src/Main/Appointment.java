@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 
 /**
  *
+ * Appointment object, handles creation of patient appointment files
+ * 
  * @author Charlie
  */
 public class Appointment {

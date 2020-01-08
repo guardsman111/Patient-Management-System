@@ -7,6 +7,8 @@ package GUIProcesses;
 
 /**
  *
+ * for request processes
+ * 
  * @author Charlie Parsons
  */
 public interface RequestInterface {

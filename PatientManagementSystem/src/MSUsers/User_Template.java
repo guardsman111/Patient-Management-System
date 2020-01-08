@@ -17,8 +17,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * 
  * Template class for all user types
  * 
+ * Handles creation of most users
  * 
  * @author Charlie Parsons
  */

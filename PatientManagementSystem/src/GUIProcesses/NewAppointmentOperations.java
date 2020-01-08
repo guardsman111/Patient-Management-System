@@ -20,6 +20,8 @@ import java.nio.file.Paths;
 
 /**
  *
+ * Inherits from request interface and allows interaction with requests and doctor/patient appointments
+ * 
  * @author Charlie
  */
 public class NewAppointmentOperations implements RequestInterface{
@@ -196,7 +198,6 @@ public class NewAppointmentOperations implements RequestInterface{
     @Override
     public void ActionRequest(boolean action) {
         if (action){
-            Appointment tempApt = new Appointment(newAppointment[0],newAppointment[1],Integer.parseInt(newAppointment[2]),newAppointment[3],Integer.parseInt(newAppointment[4]),newAppointment[5]);
             currentReqF.delete();
             UpdateList();
             currentReq -= 1;
@@ -215,11 +216,25 @@ public class NewAppointmentOperations implements RequestInterface{
                 buffWriter.write(newAppointment[0]);
                 buffWriter.newLine();
                 buffWriter.close();
+                
+                path = Paths.get("Database/Appointments/Patients/" + newAppointment[5]);
+                Files.createDirectories(path.getParent());
+                randomID = (int)(Math.random()*((99-10)+1))+10;
+                path = Paths.get("Database/Appointments/Patients/" + newAppointment[5] + "/" + tempDate  + newAppointment[1] + ".txt");
+                Files.createDirectories(path.getParent());
+                Files.createFile(path);
+                requestWriter = new FileWriter("Database/Appointments/Patients/" + newAppointment[5] + "/" + tempDate + newAppointment[1] + ".txt");
+                buffWriter = new BufferedWriter(requestWriter);
+                buffWriter.write(newAppointment[5]);
+                buffWriter.newLine();
+                buffWriter.write(newAppointment[0]);
+                buffWriter.newLine();
+                buffWriter.close();
                 } catch (IOException e){
                     e.printStackTrace();
                 }
         } else {
-            //add are you sure box
+            currentReqF.delete();
         }
     }
     

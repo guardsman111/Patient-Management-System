@@ -6,7 +6,8 @@
 package MSUsers;
 
 /**
- * Secretary User
+ * 
+ * Only used to create a separate method to create Secretaries specifically
  *
  * @author Charlie Parsons
  */

@@ -19,6 +19,9 @@ import javax.swing.ListModel;
 /**
  *
  * @author Charlie
+ *
+ * Allows a doctor to view appointments
+ * 
  */
 public class DoctorHome extends javax.swing.JFrame {
 

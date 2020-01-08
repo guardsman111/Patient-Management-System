@@ -19,6 +19,8 @@ import java.nio.file.Paths;
 
 /**
  *
+ * Inherits from request interface and allows interaction with user requests and patients
+ * 
  * @author Charlie Parsons
  */
 public class NewUserOperations implements RequestInterface {

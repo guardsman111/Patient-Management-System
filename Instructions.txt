@@ -1,0 +1,4 @@
+Sign in with all users, password is either Password or password, 
+if the first doesn't work, try the second.
+
+Admin creation password is AdminPassword

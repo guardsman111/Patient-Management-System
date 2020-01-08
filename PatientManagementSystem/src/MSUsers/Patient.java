@@ -16,7 +16,8 @@ import java.nio.file.Paths;
 import MSUsers.IDCheck;
 
 /**
- * Patient User
+ * 
+ * Creates Patient files 
  *
  * @author Charlie Parsons
  */

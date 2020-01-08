@@ -9,6 +9,8 @@ import GUIProcesses.NewUserOperations;
 
 /**
  *
+ * New user form that allows new patients to request an account
+ * 
  * @author Charlie Parsons
  */
 public class NewUser extends javax.swing.JFrame {

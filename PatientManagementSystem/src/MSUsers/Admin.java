@@ -6,7 +6,8 @@
 package MSUsers;
 
 /**
- * Administrator User
+ * 
+ * Only used to create a separate method to create Admins specifically
  *
  * @author Charlie Parsons
  */

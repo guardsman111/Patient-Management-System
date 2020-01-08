@@ -9,6 +9,9 @@ import MSUsers.Admin;
 
 /**
  *
+ * New Admin form
+ * User has to fill in a hard coded password for the surgery to get create the account, for security reasons.
+ * 
  * @author Charlie
  */
 public class NewAdmin extends javax.swing.JFrame {
