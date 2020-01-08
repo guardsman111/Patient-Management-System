@@ -98,6 +98,7 @@ public class Appointment {
             BufferedReader buffReader = new BufferedReader(reader);
             tempString += " \n" + " \n" + buffReader.readLine();
             tempString += " \n" + buffReader.readLine();
+            buffReader.close();
         }catch(IOException e){
             e.printStackTrace();
         }

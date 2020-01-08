@@ -8,8 +8,10 @@ package GUIs;
 import java.nio.file.Path;
 import Main.Appointment;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,16 +23,35 @@ import javax.swing.ListModel;
  * @author Charlie
  */
 public class DoctorAppointmentScreen extends javax.swing.JFrame {
-
+    
+    File aptFile;
+    
     /**
      * Creates new form DoctorAppointmentScreen
      */
     public DoctorAppointmentScreen(String path) {
         initComponents();
+        aptFile = new File(path);
+        SetScreenDetails();
+        this.setVisible(true);
     }
     
     public DoctorAppointmentScreen() {
         initComponents();
+    }
+    
+    public void SetScreenDetails(){
+        String tempString = aptFile.getName();
+        String[] splitString = tempString.split("P");
+        DateText.setText(splitString[0]);
+        try{
+            FileReader reader = new FileReader(aptFile);
+            BufferedReader buffReader = new BufferedReader(reader);
+            PatientText.setText(buffReader.readLine());
+            buffReader.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -46,8 +67,10 @@ public class DoctorAppointmentScreen extends javax.swing.JFrame {
         NotesBox = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         PatientText = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        EndBut = new javax.swing.JButton();
         DateText = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,11 +85,34 @@ public class DoctorAppointmentScreen extends javax.swing.JFrame {
         PatientText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PatientText.setText("Patient");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("End Appointment");
+        EndBut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        EndBut.setText("End Appointment");
+        EndBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EndButMouseClicked(evt);
+            }
+        });
 
         DateText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DateText.setText("Date");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,43 +121,68 @@ public class DoctorAppointmentScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(EndBut))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PatientText)
                                 .addGap(107, 107, 107)
-                                .addComponent(DateText)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 127, Short.MAX_VALUE)))
+                                .addComponent(DateText)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PatientText)
-                    .addComponent(DateText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PatientText)
+                            .addComponent(DateText))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EndBut)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void EndButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EndButMouseClicked
+        try{
+            FileWriter writer = new FileWriter(aptFile, true);
+            BufferedWriter buffWriter = new BufferedWriter(writer);
+            buffWriter.newLine();
+            buffWriter.newLine();
+            buffWriter.write("Doctors Notes");
+            buffWriter.newLine();
+            buffWriter.write(NotesBox.getText());
+            buffWriter.close();
+            writer = new FileWriter("Database/Appointments/Patients/" + PatientText.getText() + "/" + DateText.getText() + ".txt", true);
+            buffWriter = new BufferedWriter(writer);
+            buffWriter.newLine();
+            buffWriter.newLine();
+            buffWriter.write("Doctors Notes");
+            buffWriter.newLine();
+            buffWriter.write(NotesBox.getText());
+            buffWriter.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        this.dispose();
+    }//GEN-LAST:event_EndButMouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,10 +221,12 @@ public class DoctorAppointmentScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateText;
+    private javax.swing.JButton EndBut;
     private javax.swing.JTextArea NotesBox;
     private javax.swing.JLabel PatientText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
