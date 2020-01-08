@@ -400,7 +400,7 @@ public class SecretaryHome extends javax.swing.JFrame {
 
     private void NextPatButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NextPatButMouseClicked
         UserOps.NextRequest("Next");
-        if (UserOps.GetEndOfList()){
+        if (Integer.toString(UserOps.getCurrentReq()).equals(PatRequestText.getText())){
             this.NextPatBut.setEnabled(false);
         }
         this.PrevPatBut.setEnabled(true);

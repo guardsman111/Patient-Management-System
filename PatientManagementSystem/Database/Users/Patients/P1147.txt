@@ -1,6 +1,0 @@
-password
-Charlie
-Parsons
-address
-0
-gender

@@ -9,6 +9,7 @@ import GUIProcesses.NewAppointmentOperations;
 import MSUsers.Doctor;
 import Main.Appointment;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -44,6 +45,7 @@ public class PatientHome extends javax.swing.JFrame {
             tempString = doctors[i];
             DocRatingCombi.addItem(tempString);
         }
+        FindAppointments();
     }
     
     public PatientHome() {
@@ -53,15 +55,23 @@ public class PatientHome extends javax.swing.JFrame {
         Doctor doctorL = new Doctor();
         String[] doctors = doctorL.FindDoctors();
         for (int i = 0; i < doctors.length; i++){
-            String tempString;
-            tempString = doctors[i];
-            DoctorCombi.addItem(tempString);
+            if(doctors[i] == null){
+                
+            } else {
+                String tempString;
+                tempString = doctors[i];
+                DoctorCombi.addItem(tempString);
+            }
         }
         
         for (int i = 0; i < doctors.length; i++){
-            String tempString;
-            tempString = doctors[i];
-            DocRatingCombi.addItem(tempString);
+            if(doctors[i] == null){
+                
+            } else {
+                String tempString;
+                tempString = doctors[i];
+                DoctorCombi.addItem(tempString);
+            }
         }
     }
 
@@ -90,6 +100,8 @@ public class PatientHome extends javax.swing.JFrame {
         SubmitBut = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        AppointmentCombo = new javax.swing.JComboBox<>();
+        ReasonLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         DocRatingCombi = new javax.swing.JComboBox<>();
@@ -124,7 +136,6 @@ public class PatientHome extends javax.swing.JFrame {
         jLabel4.setText("Doctor:");
 
         DoctorCombi.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        DoctorCombi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Reason for Apt:");
@@ -212,21 +223,41 @@ public class PatientHome extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Upcoming Appointments");
 
+        AppointmentCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        AppointmentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
+
+        ReasonLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ReasonLabel.setText("jLabel9");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel7)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AppointmentCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(ReasonLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(AppointmentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ReasonLabel)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -326,6 +357,7 @@ public class PatientHome extends javax.swing.JFrame {
     }//GEN-LAST:event_SubmitButMouseClicked
 
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
+        loginScr.Reset();
         loginScr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LogOutMouseClicked
@@ -373,7 +405,30 @@ public class PatientHome extends javax.swing.JFrame {
         this.currentPatientID = currentPatientID;
     }
     
+    public void FindAppointments() {
+        File[] appointments;
+                
+        try{
+            appointments = new File("Database/Appointments/Patients/" + currentPatientID).listFiles();
+            for(int i = 0; i < appointments.length; i++){
+                FileReader reader = new FileReader("Database/Appointments/Patients/" + currentPatientID + "/" + appointments[i].getName());
+                BufferedReader buffReader = new BufferedReader(reader);
+                ReasonLabel.setText(buffReader.readLine());
+                buffReader.readLine();
+                String DateString;
+                DateString = buffReader.readLine() + "/" + buffReader.readLine() + "/" + buffReader.readLine();
+                AppointmentCombo.addItem(DateString);
+                if(i == 0){
+                    AppointmentCombo.removeItemAt(0);
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> AppointmentCombo;
     private javax.swing.JComboBox<String> DateDay;
     private javax.swing.JComboBox<String> DateMonth;
     private javax.swing.JComboBox<String> DateYear;
@@ -382,6 +437,7 @@ public class PatientHome extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> DoctorCombi;
     private javax.swing.JButton LogOut;
     private javax.swing.JTextArea ReasonBox;
+    private javax.swing.JLabel ReasonLabel;
     private javax.swing.JButton SubmitBut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -24,6 +24,8 @@ public class AdminHome extends javax.swing.JFrame {
         initComponents();
         loginScr = login;
         this.setVisible(true);
+        Doctor doctorL = new Doctor();
+        doctors = doctorL.FindDoctors();
         
         for (int i = 0; i < doctors.length; i++){
             String tempString;
@@ -61,6 +63,7 @@ public class AdminHome extends javax.swing.JFrame {
         AddressField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JTextField();
         CreateBut = new javax.swing.JButton();
+        LogOutBut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,6 +240,13 @@ public class AdminHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        LogOutBut.setText("Log Out");
+        LogOutBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutButMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,7 +256,8 @@ public class AdminHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LogOutBut))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,8 +268,11 @@ public class AdminHome extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(LogOutBut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -316,6 +330,12 @@ public class AdminHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_DoctorComboActionPerformed
 
+    private void LogOutButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutButMouseClicked
+        loginScr.Reset();
+        loginScr.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogOutButMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -358,6 +378,7 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> DoctorCombo;
     private javax.swing.JTextField FirstNameField;
     private javax.swing.JTextField LastNameField;
+    private javax.swing.JButton LogOutBut;
     private javax.swing.JTextField PasswordField;
     private javax.swing.JRadioButton SecRadio;
     private javax.swing.JLabel jLabel1;

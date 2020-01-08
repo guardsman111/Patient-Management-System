@@ -235,7 +235,7 @@ public class Login extends javax.swing.JFrame {
         }
         if (IDField.getText().charAt(0) == 'S'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
-                SecretaryHome SHome = new SecretaryHome();
+                SecretaryHome SHome = new SecretaryHome(this);
                 this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
@@ -243,7 +243,7 @@ public class Login extends javax.swing.JFrame {
         }
         if (IDField.getText().charAt(0) == 'A'){
             if (lPress.Login(IDField.getText(),PasswordField.getText())){
-                AdminHome AHome = new AdminHome();
+                AdminHome AHome = new AdminHome(this);
                 this.setVisible(false);
             } else {
                 jLabel5.setVisible(true);
