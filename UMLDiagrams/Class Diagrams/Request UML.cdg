@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="NewUserOperations" package="GUIProcesses" visibility="public" xPosition="20.0" yPosition="552.0">
+      <Fields>
+        <Field name="pending" type="int" visibility="private"/>
+        <Field name="reqArray" type="File[]" visibility="public"/>
+        <Field name="currentReq" type="int" visibility="private"/>
+        <Field name="newPatient" type="String[]" visibility="private"/>
+        <Field name="currentReqF" type="File" visibility="private"/>
+        <Field name="sGUI" type="SecretaryHome" visibility="private"/>
+        <Field name="requestReader" type="FileReader" visibility="package"/>
+        <Field name="requestWriter" type="FileWriter" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="NewUserOperations" returnType="void" visibility="public"/>
+        <Method name="UpdateList" returnType="void" visibility="public"/>
+        <Method name="DisplayFirstReq" returnType="void" visibility="public"/>
+        <Method name="CheckForRequest" returnType="boolean" visibility="public"/>
+        <Method name="NextRequest" returnType="void" visibility="public">
+          <Argument type="String" name="Direction"/>
+        </Method>
+        <Method name="DisplayRequest" returnType="String" visibility="public"/>
+        <Method name="CreateRequest" returnType="void" visibility="public">
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="lName"/>
+          <Argument type="String" name="address"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="gender"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="ActionRequest" returnType="void" visibility="public">
+          <Argument type="boolean" name="action"/>
+        </Method>
+        <Method name="GetEndOfList" returnType="boolean" visibility="public"/>
+        <Method name="SetGUI" returnType="void" visibility="public">
+          <Argument type="SecretaryHome" name="GUI"/>
+        </Method>
+        <Method name="getCurrentReq" returnType="int" visibility="public"/>
+        <Method name="getPending" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="NewAppointmentOperations" package="GUIProcesses" visibility="public" xPosition="353.0" yPosition="20.0">
+      <Fields>
+        <Field name="pending" type="int" visibility="private"/>
+        <Field name="reqArray" type="File[]" visibility="public"/>
+        <Field name="currentReq" type="int" visibility="private"/>
+        <Field name="newAppointment" type="String[]" visibility="private"/>
+        <Field name="currentReqF" type="File" visibility="private"/>
+        <Field name="sGUI" type="SecretaryHome" visibility="private"/>
+        <Field name="requestReader" type="FileReader" visibility="package"/>
+        <Field name="requestWriter" type="FileWriter" visibility="package"/>
+        <Field name="appointmentWriter" type="FileWriter" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="NewAppointmentOperations" returnType="void" visibility="public"/>
+        <Method name="UpdateList" returnType="void" visibility="public"/>
+        <Method name="DisplayFirstReq" returnType="void" visibility="public"/>
+        <Method name="CheckForRequest" returnType="boolean" visibility="public"/>
+        <Method name="NextRequest" returnType="void" visibility="public">
+          <Argument type="String" name="Direction"/>
+        </Method>
+        <Method name="DisplayRequest" returnType="String" visibility="public"/>
+        <Method name="DisplayRequest" returnType="String" visibility="public">
+          <Argument type="String" name="part"/>
+        </Method>
+        <Method name="CreateRequest" returnType="void" visibility="public">
+          <Argument type="String" name="patientID"/>
+          <Argument type="String" name="reason"/>
+          <Argument type="String" name="doctorID"/>
+          <Argument type="int" name="day"/>
+          <Argument type="String" name="month"/>
+          <Argument type="int" name="year"/>
+        </Method>
+        <Method name="ActionRequest" returnType="void" visibility="public">
+          <Argument type="boolean" name="action"/>
+        </Method>
+        <Method name="GetEndOfList" returnType="boolean" visibility="public"/>
+        <Method name="SetGUI" returnType="void" visibility="public">
+          <Argument type="SecretaryHome" name="GUI"/>
+        </Method>
+        <Method name="getCurrentReq" returnType="int" visibility="public"/>
+        <Method name="getPending" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SecretaryHome" package="GUIs" visibility="public" xPosition="1017.0" yPosition="20.0">
+      <Fields>
+        <Field name="UserOps" type="NewUserOperations" visibility="package"/>
+        <Field name="AptOps" type="NewAppointmentOperations" visibility="package"/>
+        <Field name="loginScr" type="Login" visibility="private"/>
+        <Field name="AcceptBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="AppRequestText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="BookAptBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="DateText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="DocDrop" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="DocDrop1" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="DocDrop2" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="DocDrop3" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="DoctorText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="LogOutBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="NextPatBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="PatRequestField" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="PatRequestText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="PatientText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="PrevPatBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="RejectBut" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="patReqBox" type="javax.swing.JTextArea" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Login" name="login"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="CreateUserOps" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AcceptButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="NextPatButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="PrevPatButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="RejectButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="BookAptButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="LogOutButMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="getDateText" returnType="JLabel" visibility="public"/>
+        <Method name="setDateText" returnType="void" visibility="public">
+          <Argument type="JLabel" name="DateText"/>
+        </Method>
+        <Method name="getDoctorText" returnType="JLabel" visibility="public"/>
+        <Method name="setDoctorText" returnType="void" visibility="public">
+          <Argument type="JLabel" name="DoctorText"/>
+        </Method>
+        <Method name="getPatientText" returnType="JLabel" visibility="public"/>
+        <Method name="setPatientText" returnType="void" visibility="public">
+          <Argument type="JLabel" name="PatientText"/>
+        </Method>
+        <Method name="getPatReqBox" returnType="JTextArea" visibility="public"/>
+        <Method name="setPatReqBox" returnType="void" visibility="public">
+          <Argument type="String" name="newString"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="RequestInterface" package="GUIProcesses" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Methods>
+        <Method name="CheckForRequest" returnType="boolean" visibility="package"/>
+        <Method name="NextRequest" returnType="void" visibility="package">
+          <Argument type="String" name="Direction"/>
+        </Method>
+        <Method name="DisplayRequest" returnType="String" visibility="package"/>
+        <Method name="ActionRequest" returnType="void" visibility="package">
+          <Argument type="boolean" name="action"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="GUIProcesses.NewAppointmentOperations" target="GUIProcesses.RequestInterface"/>
+    <HasRelation name="AptOps" source="GUIs.SecretaryHome" target="GUIProcesses.NewAppointmentOperations" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sGUI" source="GUIProcesses.NewUserOperations" target="GUIs.SecretaryHome" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="UserOps" source="GUIs.SecretaryHome" target="GUIProcesses.NewUserOperations" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="GUIProcesses.NewUserOperations" target="GUIs.SecretaryHome" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="GUIProcesses.NewUserOperations" target="GUIProcesses.RequestInterface"/>
+    <HasRelation name="sGUI" source="GUIProcesses.NewAppointmentOperations" target="GUIs.SecretaryHome" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="GUIProcesses.NewAppointmentOperations" target="GUIs.SecretaryHome" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

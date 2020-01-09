@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Patient" package="MSUsers" visibility="public" xPosition="1004.0" yPosition="270.0">
+      <Fields>
+        <Field name="age" type="Integer" visibility="private"/>
+        <Field name="gender" type="String" visibility="private"/>
+        <Field name="writer" type="FileWriter" visibility="private"/>
+        <Field name="buffWriter" type="BufferedWriter" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="ID"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="sName"/>
+          <Argument type="String" name="address"/>
+          <Argument type="Integer" name="tAge"/>
+          <Argument type="String" name="tGender"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="GenerateID" returnType="String" visibility="public"/>
+        <Method name="getAge" returnType="Integer" visibility="public"/>
+        <Method name="setAge" returnType="void" visibility="public">
+          <Argument type="Integer" name="age"/>
+        </Method>
+        <Method name="getGender" returnType="String" visibility="public"/>
+        <Method name="setGender" returnType="void" visibility="public">
+          <Argument type="String" name="gender"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Secretary" package="MSUsers" visibility="public" xPosition="1471.0" yPosition="634.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="sName"/>
+          <Argument type="String" name="address"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Doctor" package="MSUsers" visibility="public" xPosition="416.0" yPosition="270.0">
+      <Fields>
+        <Field name="doctors" type="String[]" visibility="public"/>
+        <Field name="docArray" type="File[]" visibility="public"/>
+        <Field name="docReader" type="FileReader" visibility="package"/>
+        <Field name="buffReader" type="BufferedReader" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="ID"/>
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="sName"/>
+          <Argument type="String" name="address"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="FindDoctors" returnType="String[]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Admin" package="MSUsers" visibility="public" xPosition="31.0" yPosition="555.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="ID"/>
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="sName"/>
+          <Argument type="String" name="address"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="User_Template" package="MSUsers" visibility="public" xPosition="638.0" yPosition="755.0">
+      <Fields>
+        <Field name="userID" type="String" visibility="private"/>
+        <Field name="fName" type="String" visibility="private"/>
+        <Field name="lName" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="writer" type="FileWriter" visibility="private"/>
+        <Field name="reader" type="FileReader" visibility="private"/>
+        <Field name="buffWriter" type="BufferedWriter" visibility="private"/>
+        <Field name="buffReader" type="BufferedReader" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="CreateUser" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="gName"/>
+          <Argument type="String" name="sName"/>
+          <Argument type="String" name="nAddress"/>
+          <Argument type="String" name="nPassword"/>
+        </Method>
+        <Method name="getUserID" returnType="String" visibility="public"/>
+        <Method name="setUserID" returnType="void" visibility="public">
+          <Argument type="String" name="UserID"/>
+        </Method>
+        <Method name="getfName" returnType="String" visibility="public"/>
+        <Method name="setfName" returnType="void" visibility="public">
+          <Argument type="String" name="fName"/>
+        </Method>
+        <Method name="getlName" returnType="String" visibility="public"/>
+        <Method name="setlName" returnType="void" visibility="public">
+          <Argument type="String" name="lName"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="GenerateID" returnType="String" visibility="public"/>
+        <Method name="GenerateID" returnType="String" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IDCheck" package="MSUsers" visibility="public" xPosition="1471.0" yPosition="1038.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="CheckIDDuplicate" returnType="Boolean" visibility="public">
+          <Argument type="String" name="ID"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="MSUsers.Admin" target="MSUsers.User_Template"/>
+    <IsRelation name="is" source="MSUsers.Doctor" target="MSUsers.User_Template"/>
+    <IsRelation name="is" source="MSUsers.Patient" target="MSUsers.User_Template"/>
+    <IsRelation name="is" source="MSUsers.Secretary" target="MSUsers.User_Template"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
